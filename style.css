@@ -1,0 +1,21 @@
+.grid-container {
+    display: grid;
+    grid-template-rows: 100px 300px;
+  }
+  #myDIV {
+    height:770px;
+    display: grid;
+    grid-template-columns: auto auto;
+    gap: 10px;
+    background-color: black;
+    padding: 20px;
+    grid: 250px / 250px 250px 250px;
+  }
+#myDIV div {
+    
+    margin:0;
+    background-color: rgb(155, 200, 255);
+    text-align: center;
+    font-size: 6rem;
+    border: 3px;
+  }

@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css"/>
+    <title>Document</title>
+
+</head>
+<body>
+    <script src="node_modules/jquery/dist/jquery.js"></script>
+    <script src="ticTacToe.js"></script>
+   
+    <!-- • Using any of the tools you’ve worked with so far, create a game of Tic-Tac-Toe.
+    ◦ Create a Tic-Tac-Toe game grid using your HTML element of choice. 
+    ◦ When a cell in the grid is clicked, an X or O should appear in that spot depending on whose turn it is.
+    ◦ A heading should say whether it is X’s or O’s turn and change with each move made.
+    ◦ A button should be available to clear the grid and restart the game.
+    ◦ When a player has won, or the board is full and the game results in a draw, a Bootstrap alert or similar Bootstrap component should appear across the screen announcing the winner. -->
+
+   
+    
+    
+    </style>
+    </head>
+    <body>
+    
+    <h1>The grid property</h1>
+    
+    <div id="myDIV">
+      <div id="div1"></div>
+      <div id="div2"></div>
+      <div id="div3"></div>
+      <div id="div4"></div>
+      <div id="div5"></div>
+      <div id="div6"></div>
+      <div id="div7"></div>
+      <div id="div8"></div>
+      <div id="div9"></div>
+    </div>
+    <script>
+      // 1. add an eventlistener
+      // make a click counter to record the number of clicks
+      // 2. id the div that is clicked
+      // 3. make a function that determines X or O by turn using the mod and a click counter odd counter makes X even makes an O
+      // 4. us the id from the click to add the text 'X' or 'O';
+      // 5. create a method that compares the value in the rows in winning combos (123, 456, 789, 159, 257) and out put the winner when the 3 values are the same if(getElementbyId(div1).value == getElementById(div2).value && ......
+      // 5. or make a variable = to each div and compare with less typing. or use jquery
+      // 5. could make a loop that iterates through all the divs and compares[0], [1], [2]; [3], [4], [5]; [6], [7], [8]; [0], [4], [8]; [2], [3], [6];
+
+
+      document.addEventListener('click', counter);
+
+      function counter(){
+
+        let clickCount = 0;
+        clickCount += 1;
+
+        if(clickCount === 9){
+          y.removeEventListener('click', counter);
+        };
+        console.log(clickCount);
+      }
+      
+        
+      
+    </script>
+</body>
+</html>
