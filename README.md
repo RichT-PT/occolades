@@ -69,3 +69,4 @@ comment out:
 removed addXorO from event listener
 now it only logs player 1 and x and no longer alternates players!? fml
 commented out the 9 click conditional
+Just uncommented line 62 'declarePlayer(); and it started working
