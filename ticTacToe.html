@@ -43,8 +43,8 @@
       // 3. create a method that compares the value in the rows in winning combos (123, 456, 789, 159, 257) and out put the winner when the 3 values are the same if(getElementbyId(div1).value == getElementById(div2).value && ......
       // 3. or make a variable = to each div and compare with less typing. or use jquery
       // 3. could make a loop that iterates through all the divs and compares[0], [1], [2]; [3], [4], [5]; [6], [7], [8]; [0], [4], [8]; [2], [3], [6];
-document.addEventListener('click', counter, declarePlayer);
-  var count = null;
+document.addEventListener('click', counter, declarePlayer, addXorO);
+  var count = 0;
   var playerNumber = 0;
   var playerXorO = "";        //i think this needs to be outside of the funcion to use in other functions
 function counter(){
@@ -58,7 +58,7 @@ function counter(){
 console.log(count);
 console.log(playerNumber);
 console.log(playerXorO);
-// declarePlayer();
+declarePlayer();
 }
 
 function declarePlayer(){         //this function is called at the end and should display an X to start game this also needs to change
@@ -88,56 +88,55 @@ function declarePlayer(){         //this function is called at the end and shoul
                                       //value to the box
 
 // JavaScript code
-// const container = document.getElementById("myDIV");
+const container = document.getElementById("myDIV");
 
-// container.addEventListener("click", function(event) {
-  // const clickedElement = event.target;
-  // const clickedId = clickedElement.getAttribute("id");
-  // console.log("Clicked element:", clickedElement);
-  // console.log("\nThe ID of the box clicked is: ", clickedId);
-// 
-// });
+container.addEventListener("click", function(event) {
+  const clickedElement = event.target;
+  const clickedId = clickedElement.getAttribute("id");
+  console.log("Clicked element:", clickedElement);
+  console.log("\nThe ID of the box clicked is: ", clickedId);
+});
 
      
-// function addXorO(){   //uses the above method to identify the box being clicked,
-//                      // adds an X or O depending on the output in the h1
-//   if(document.getElementById(clickedId) === ""){     //checks to see if
-//                                                          //anything is already in the box before adding X or O
-//   document.getElementById(clickedId).innerHTML = playerXorO; //add the current
-//                                                     // player: X or O to the header
-//       }
-//       console.log('addXorO function ID call: ' + clickedId + "\nX or O variable:" + playerXorO);
-// }
+function addXorO(){   //uses the above method to identify the box being clicked,
+                     // adds an X or O depending on the output in the h1
+  if(document.getElementById(clickedId) === ""){     //checks to see if
+                                                         //anything is already in the box before adding X or O
+  document.getElementById(clickedId).innerHTML = playerXorO; //add the current
+                                                    // player: X or O to the header
+      }
+      console.log('addXorO function ID call: ' + clickedId + "\nX or O variable:" + playerXorO);
+}
 
-// var allBoxes = [];
-// function declareWinner(){
-//   let divId = "div" + [i]
-//   for(let i = 1; i = 9; i++){
+var allBoxes = [];
+function declareWinner(){
+  let divId = "div" + [i]
+  for(let i = 1; i = 9; i++){
 //     allBoxes.push(getElementById(divId).value)// want to iterated through each div in order and push the value into allBoxes array, hoping to use the
                                             //[i] to create each id example div1, div2, div3....
-//   }
-//   //for(let i = 0; i < allBoxes.length; i++){ // don't think I need this loop. just conditionals
-//   if(allBoxes[0] === allBoxes[1] && allBoxes[2] === allBoxes[1]){
-//       console.log("Player ", playerNumber, "Wins");
-//       document.removeEventListener('click', counter, declarePlayer, idGridBox, addXorO);
-//   }
-//   else if(allBoxes[3] === allBoxes[4] && allBoxes[5] === allBoxes[4]){
-//       console.log("Player ", playerNumber, "Wins");
-//       document.removeEventListener('click', counter, declarePlayer, idGridBox, addXorO);
-//   }
-//   else if(allBoxes[6] === allBoxes[7] && allBoxes[8] === allBoxes[7]){
-//       console.log("Player ", playerNumber, "Wins");
-//       document.removeEventListener('click', counter, declarePlayer, idGridBox, addXorO);
-//   }
-//   else if(allBoxes[0] === allBoxes[4] && allBoxes[8] === allBoxes[4]){
-//       console.log("Player ", playerNumber, "Wins");
-//       document.removeEventListener('click', counter, declarePlayer, idGridBox, addXorO);
-//   }
-//   else if(allBoxes[2] === allBoxes[4] && allBoxes[6] === allBoxes[4]){
-//       console.log("Player ", playerNumber, "Wins");
-//       document.removeEventListener('click', counter, declarePlayer, idGridBox, addXorO);
-//   }
-// }
+  }
+  //for(let i = 0; i < allBoxes.length; i++){ // don't think I need this loop. just conditionals
+  if(allBoxes[0] === allBoxes[1] && allBoxes[2] === allBoxes[1]){
+      console.log("Player ", playerNumber, "Wins");
+      document.removeEventListener('click', counter, declarePlayer, idGridBox, addXorO);
+  }
+  else if(allBoxes[3] === allBoxes[4] && allBoxes[5] === allBoxes[4]){
+      console.log("Player ", playerNumber, "Wins");
+      document.removeEventListener('click', counter, declarePlayer, idGridBox, addXorO);
+  }
+  else if(allBoxes[6] === allBoxes[7] && allBoxes[8] === allBoxes[7]){
+      console.log("Player ", playerNumber, "Wins");
+      document.removeEventListener('click', counter, declarePlayer, idGridBox, addXorO);
+  }
+  else if(allBoxes[0] === allBoxes[4] && allBoxes[8] === allBoxes[4]){
+      console.log("Player ", playerNumber, "Wins");
+      document.removeEventListener('click', counter, declarePlayer, idGridBox, addXorO);
+  }
+  else if(allBoxes[2] === allBoxes[4] && allBoxes[6] === allBoxes[4]){
+      console.log("Player ", playerNumber, "Wins");
+      document.removeEventListener('click', counter, declarePlayer, idGridBox, addXorO);
+  }
+}
 
 
 declarePlayer();  
