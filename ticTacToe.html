@@ -43,8 +43,10 @@
       let count = 0;
       let playerNumber = 0;
       let playerXorO = "";
-      let clickedId = null;
-
+      let clickedIdGlobal = null;
+      const allBoxesDivId = [];
+      const allBoxesContent = [];
+      let XorO = "";
       declarePlayer();
 
       const container = document.getElementById("myDIV");
@@ -96,87 +98,113 @@
         console.log("Clicked element:", clickedElement);
         console.log("\nThe ID of the box clicked is: ", clickedId);
         // add the X or O to the div that is id'd
-        clickedId = clickedId;
-        addXorO(clickedId);
+        clickedIdGlobal = clickedId;
+
+        addXorO(clickedIdGlobal);
         counter();
-
         declarePlayer();
+        if (count == 9) {
+          declareWinner();
+        }
+        //console.log("new log of clicked id: " + clickedIdGlobal);
       }
-      console.log("new log of clicked id: " + clickedId);
 
-      function addXorO(clickedId) {
+      function addXorO(clickedIdGlobal) {
+        let attribute = document.getElementById(clickedIdGlobal).getAttribute;
         //uses the above method to identify the box being clicked,
         // adds an X or O depending on the output in the h1
-        console.log(document.getElementById(clickedId));
-        if (document.getElementById(clickedId).value === "") {
-          //checks to see if
-          //anything is already in the box before adding X or O
-          document.getElementById(clickedId).innerHTML = playerXorO; //add the current
-          // player: X or O to the header
-        }
-        // console.log(
-        //   "addXorO function ID call: " +
-        //     clickedId +
-        //     "\nX or O letiable:" +
-        //     playerXorO
-        // );
+
+        //if (document.getElementById(clickedIdGlobal).getAttribute === "") {
+        //checks to see if
+        //anything is already in the box before adding X or O
+        document.getElementById(clickedIdGlobal).innerHTML = playerXorO; //add the current
+        let XorO = document.getElementById(clickedIdGlobal).textContent;
+        console.log("In the addXorO function, log the content: ", XorO);
       }
 
-      let allBoxes = [];
       function declareWinner() {
-        let divId = "div" + [i];
-        for (let i = 1; (i = 9); i++) {
+        for (let i = 1; i < 10; i++) {
+          let divId = '"div' + [i] + '"';
+          allBoxesDivId.push(divId);
           //     allBoxes.push(getElementById(divId).value)// want to iterated through each div in order and push the value into allBoxes array, hoping to use the
           //[i] to create each id example div1, div2, div3....
+          console.log(divId);
         }
+        for (let i = 0; i < allBoxesDivId.length; i++) {
+          //let XorO = document.getElementById(allBoxesContent[i]).textContent;
+          allBoxesContent.push(XorO);
+          // console.log(XorO);
+        }
+        console.log(document.getElementById("div5").textContent);
+        // console.log(allBoxesContent[i]);
+
+        //console.log(allBoxesContent);
         //for(let i = 0; i < allBoxes.length; i++){ // don't think I need this loop. just conditionals
-        if (allBoxes[0] === allBoxes[1] && allBoxes[2] === allBoxes[1]) {
+        if (
+          document.getElementById("div1").textContent ===
+            document.getElementById("div2").textContent &&
+          document.getElementById("div1").textContent ===
+            document.getElementById("div3").textContent
+        ) {
+          console.log("Player 1 Wins");
+          // document.removeEventListener(
+          //   "click",
+          //   counter,
+          //   declarePlayer,
+          //   idGridBox,
+          //   addXorO
+          // );
+        } else if (
+          allBoxescontent[3] === allBoxescontent[4] &&
+          allBoxescontent[5] === allBoxescontent[4]
+        ) {
           console.log("Player ", playerNumber, "Wins");
-          document.removeEventListener(
-            "click",
-            counter,
-            declarePlayer,
-            idGridBox,
-            addXorO
-          );
-        } else if (allBoxes[3] === allBoxes[4] && allBoxes[5] === allBoxes[4]) {
+          // document.removeEventListener(
+          //   "click",
+          //   counter,
+          //   declarePlayer,
+          //   idGridBox,
+          //   addXorO
+          // );
+        } else if (
+          allBoxescontent[6] === allBoxescontent[7] &&
+          allBoxescontent[8] === allBoxescontent[7]
+        ) {
           console.log("Player ", playerNumber, "Wins");
-          document.removeEventListener(
-            "click",
-            counter,
-            declarePlayer,
-            idGridBox,
-            addXorO
-          );
-        } else if (allBoxes[6] === allBoxes[7] && allBoxes[8] === allBoxes[7]) {
+          // document.removeEventListener(
+          //   "click",
+          //   counter,
+          //   declarePlayer,
+          //   idGridBox,
+          //   addXorO
+          // );
+        } else if (
+          allBoxescontent[0] === allBoxescontent[4] &&
+          allBoxescontent[8] === allBoxescontent[4]
+        ) {
           console.log("Player ", playerNumber, "Wins");
-          document.removeEventListener(
-            "click",
-            counter,
-            declarePlayer,
-            idGridBox,
-            addXorO
-          );
-        } else if (allBoxes[0] === allBoxes[4] && allBoxes[8] === allBoxes[4]) {
+          // document.removeEventListener(
+          //   "click",
+          //   counter,
+          //   declarePlayer,
+          //   idGridBox,
+          //   addXorO
+          // );
+        } else if (
+          allBoxescontent[2] === allBoxescontent[4] &&
+          allBoxescontent[6] === allBoxescontent[4]
+        ) {
           console.log("Player ", playerNumber, "Wins");
-          document.removeEventListener(
-            "click",
-            counter,
-            declarePlayer,
-            idGridBox,
-            addXorO
-          );
-        } else if (allBoxes[2] === allBoxes[4] && allBoxes[6] === allBoxes[4]) {
-          console.log("Player ", playerNumber, "Wins");
-          document.removeEventListener(
-            "click",
-            counter,
-            declarePlayer,
-            idGridBox,
-            addXorO
-          );
+          // document.removeEventListener(
+          //   "click",
+          //   counter,
+          //   declarePlayer,
+          //   idGridBox,
+          //   addXorO
+          // );
         }
       }
+      console.log(document.getElementById("div1").textContent);
     </script>
   </body>
 </html>
