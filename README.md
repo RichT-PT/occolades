@@ -81,3 +81,7 @@ just manually type the document.getElementById(div1,div2...).textContent for eac
 16. also need to lock each div after an entry is made. probably try to use the if statement again. if(document.getElementById().textContent === "X" || if(document.getElementById().textContent === "O"){
   ignore event or something
 }
+add conditional statements to allow functions to be called
+line 57, the conditional is reading the box at click and needs to read the condition at the end of the last round somehow. may need to created a function called allowMove and call the function after each click but then again, we need to stop play on an element that has something in it only. the first function on click should check the condition of the box before any other functions are called.
+removed conditional and moved it to line 99 in handleClick function
+adding the if conditional on 96 broke the code. 

@@ -52,11 +52,11 @@
       const container = document.getElementById("myDIV");
       container.addEventListener("click", handleClick);
 
-      function counter() {
+      function counter() {    
         count++;
-
         console.log({ count, playerNumber, playerXorO });
         declarePlayer();
+        
       }
 
       function declarePlayer() {
@@ -93,9 +93,10 @@
 
       function handleClick(event) {
         //debugger;
+        // if(count < 9 && document.getElementById(clickedIdGlobal).textContent != 'X' && document.getElementById(clickedIdGlobal).textContent != 'O'){
         const clickedElement = event.target;
         const clickedId = clickedElement.getAttribute("id");
-        console.log("Clicked element:", clickedElement);
+        //console.log("Clicked element:", clickedElement);
         console.log("\nThe ID of the box clicked is: ", clickedId);
         // add the X or O to the div that is id'd
         clickedIdGlobal = clickedId;
@@ -106,6 +107,7 @@
         if (count == 9) {
           declareWinner();
         }
+     // }
         //console.log("new log of clicked id: " + clickedIdGlobal);
       }
 
@@ -113,15 +115,17 @@
         let attribute = document.getElementById(clickedIdGlobal).getAttribute;
         //uses the above method to identify the box being clicked,
         // adds an X or O depending on the output in the h1
+        if(document.getElementById(clickedIdGlobal).textContent != "X" && document.getElementById(clickedIdGlobal).textContent != 'O'){
 
+        
         //if (document.getElementById(clickedIdGlobal).getAttribute === "") {
         //checks to see if
         //anything is already in the box before adding X or O
         document.getElementById(clickedIdGlobal).innerHTML = playerXorO; //add the current
         let XorO = document.getElementById(clickedIdGlobal).textContent;
         console.log("In the addXorO function, log the content: ", XorO);
+        }
       }
-
       function declareWinner() {
         for (let i = 1; i < 10; i++) {
           let divId = '"div' + [i] + '"';
@@ -135,7 +139,7 @@
           allBoxesContent.push(XorO);
           // console.log(XorO);
         }
-        console.log(document.getElementById("div5").textContent);
+        //console.log(document.getElementById("div5").textContent);
         // console.log(allBoxesContent[i]);
 
         //console.log(allBoxesContent);
@@ -146,7 +150,12 @@
           document.getElementById("div1").textContent ===
             document.getElementById("div3").textContent
         ) {
-          console.log("Player 1 Wins");
+          if(document.getElementById("div1").textContent === "X"){
+            document.getElementById("playerDeclaration").innerHTML = ("Player 1-X Wins");
+          }
+          else{
+            document.getElementById("playerDeclaration").innerHTML = ("Player 2-O Wins");
+          }
           // document.removeEventListener(
           //   "click",
           //   counter,
@@ -155,10 +164,15 @@
           //   addXorO
           // );
         } else if (
-          allBoxescontent[3] === allBoxescontent[4] &&
-          allBoxescontent[5] === allBoxescontent[4]
+          document.getElementById("div4").textContent === document.getElementById("div5").textContent &&
+          document.getElementById("div6").textContent === document.getElementById("div4").textContent
         ) {
-          console.log("Player ", playerNumber, "Wins");
+          if(document.getElementById("div4").textContent === "X"){
+            document.getElementById("playerDeclaration").innerHTML = ("Player 1-X Wins");
+          }
+          else{
+            document.getElementById("playerDeclaration").innerHTML = ("Player 2-O Wins");
+          }
           // document.removeEventListener(
           //   "click",
           //   counter,
@@ -167,10 +181,15 @@
           //   addXorO
           // );
         } else if (
-          allBoxescontent[6] === allBoxescontent[7] &&
-          allBoxescontent[8] === allBoxescontent[7]
+          document.getElementById("div7").textContent === document.getElementById("div8").textContent &&
+          document.getElementById("div9").textContent === document.getElementById("div7").textContent
         ) {
-          console.log("Player ", playerNumber, "Wins");
+          if(document.getElementById("div7").textContent === "X"){
+            document.getElementById("playerDeclaration").innerHTML = ("Player 1-X Wins");
+          }
+          else{
+            document.getElementById("playerDeclaration").innerHTML = ("Player 2-O Wins");
+          }
           // document.removeEventListener(
           //   "click",
           //   counter,
@@ -179,10 +198,15 @@
           //   addXorO
           // );
         } else if (
-          allBoxescontent[0] === allBoxescontent[4] &&
-          allBoxescontent[8] === allBoxescontent[4]
+          document.getElementById("div1").textContent === document.getElementById("div5").textContent &&
+          document.getElementById("div9").textContent === document.getElementById("div1").textContent
         ) {
-          console.log("Player ", playerNumber, "Wins");
+          if(document.getElementById("div1").textContent === "X"){
+            document.getElementById("playerDeclaration").innerHTML = ("Player 1-X Wins");
+          }
+          else{
+            document.getElementById("playerDeclaration").innerHTML = ("Player 2-O Wins");
+          }
           // document.removeEventListener(
           //   "click",
           //   counter,
@@ -190,11 +214,17 @@
           //   idGridBox,
           //   addXorO
           // );
-        } else if (
-          allBoxescontent[2] === allBoxescontent[4] &&
-          allBoxescontent[6] === allBoxescontent[4]
+        } 
+        else if (
+          document.getElementById("div3").textContent === document.getElementById("div5").textContent &&
+          document.getElementById("div7").textContent === document.getElementById("div3").textContent
         ) {
-          console.log("Player ", playerNumber, "Wins");
+          if(document.getElementById("div3").textContent === "X"){
+            document.getElementById("playerDeclaration").innerHTML = ("Player 1-X Wins");
+          }
+          else{
+            document.getElementById("playerDeclaration").innerHTML = ("Player 2-O Wins");
+          }
           // document.removeEventListener(
           //   "click",
           //   counter,
@@ -204,7 +234,7 @@
           // );
         }
       }
-      console.log(document.getElementById("div1").textContent);
+      document.getElementById("playerDeclaration").innerHTML = (document.getElementById("div1").textContent);
     </script>
   </body>
 </html>
