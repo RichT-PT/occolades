@@ -72,3 +72,12 @@ commented out the 9 click conditional
 Just uncommented line 62 'declarePlayer(); and it started working
 moving all function calls into the handleClick function and will organize their calls there. 
 learned to add debugger
+Got everything in order and running
+need to add something to prevent a click from being able to change a square but I 
+CANNOT get anything to run that gets the text content from the elements
+eliminate the code that creates the div id array. You have to add '"' to each side because the elements in the array that are div1, div2,... must be wrapped in quotes to be in the proper syntax to be recognized by the script as an ID.
+just manually type the document.getElementById(div1,div2...).textContent for each conditional to simplify the program
+15. need to move the win test conditional block into the addXorO so that it can anylize a win after each entry and stop the game. 
+16. also need to lock each div after an entry is made. probably try to use the if statement again. if(document.getElementById().textContent === "X" || if(document.getElementById().textContent === "O"){
+  ignore event or something
+}
