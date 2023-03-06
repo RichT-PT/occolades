@@ -85,3 +85,7 @@ add conditional statements to allow functions to be called
 line 57, the conditional is reading the box at click and needs to read the condition at the end of the last round somehow. may need to created a function called allowMove and call the function after each click but then again, we need to stop play on an element that has something in it only. the first function on click should check the condition of the box before any other functions are called.
 removed conditional and moved it to line 99 in handleClick function
 adding the if conditional on 96 broke the code. 
+
+moved conditional into the clickHandler function and called the addXorO function before it
+only clicks X, does not cycle turns, does not display player on header
+moving the counter call out allows it to run as normal but cycles through players with each click
