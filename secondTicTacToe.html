@@ -53,14 +53,7 @@
       document.getElementById("myDIV").addEventListener("click", clickHandler);
 
       function restart(){
-        const restartGame = document.querySelectorAll("div");
-	for (var i = 1; i < 10; i++) {
-    let id = "div" + i;
-    //console.log('restart', id);
-    document.getElementById(id).innerHTML = "";
-	}
-
-  window.location.reload();//REVIEW - handy handy handy. don't have to clear date to start over
+          window.location.reload();//REVIEW - handy handy handy. don't have to clear date to start over
       }
       function declarePlayer() {
         document.getElementById("playerDeclaration").innerHTML =
