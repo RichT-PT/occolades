@@ -43,7 +43,7 @@
       let count = 0;
       let playerNumber = 1;
       //let playerXorO = "X";
-      let clickedIdGlobal = null;
+      let clickedIdGlobal = "";
       const allBoxesContent = ["", "", "", "", "", "", "", "", ""];
       let XorO = "X";
 
@@ -72,54 +72,73 @@
         clickedIdGlobal = clickedId;
       }
       //NOTE - addXorO
-      function addXorO(newClick) {
+      function addXorO() {
+        // removed (newClick) for now to get code running again
         //REVIEW -
-        console.log("addXorO function", newClick);
-        let divIndex = newClick.replace("div", "") - 1; //REVIEW - learn this
-        console.log(divIndex);
-        allBoxesContent[divIndex] = XorO; //REVIEW -
-        console.log(allBoxesContent);
+        //console.log("addXorO function", newClick);
+        //let divIndex = newClick.replace("div", "") - 1; //REVIEW - learn this
+        //console.log(divIndex);
+        //allBoxesContent[divIndex] = XorO; //REVIEW -
+        //console.log(allBoxesContent);
 
         document.getElementById(clickedIdGlobal).innerHTML = XorO;
         //checkForWinner();
       }
 
       //NOTE -  checkForWinner- nested loop that iterates through div values to compare them
-      function checkForWinner() {
-        var winningCombo = [
-          [1, 4, 7],
-          [2, 5, 8],
-          [3, 6, 9],
-          [1, 2, 3],
-          [4, 5, 6],
-          [7, 8, 9],
-          [1, 5, 9],
-          [3, 5, 7],
-        ];
-        for (let i = 0; i < winningCombo.length; i++) {
-          // console.log(i, " outer loop ", winningCombo[i]);
-          for (let a = 0; a < winningCombo[i].length; a++) {
-            //  console.log(a, " inner loop ", winningCombo[i][a]);
-          }
-        }
-        //document.getElementById("div1").textContent != "" || document.getElementById("div2").textContent !="" || document.getElementById("div3").textContent != "" ||
+      // function checkForWinner() {
+      //   console.clear(); //REVIEW -
+      //   var winningCombo = [
+      //     [1, 4, 7],
+      //     [2, 5, 8],
+      //     [3, 6, 9],
+      //     [1, 2, 3],
+      //     [4, 5, 6],
+      //     [7, 8, 9],
+      //     [1, 5, 9],
+      //     [3, 5, 7],
+      //   ];
+      //   let winner = ["", "", ""];
+      //   for (let i = 0; i < winningCombo.length; i++) {
+      //     //FIXME - need function here
+      //     console.log(i, " outer loop ", winningCombo[i]);
+      //     for (let a = 0; a < winningCombo[i].length; a++) {
+      //       //  console.log(a, " inner loop ", winningCombo[i][a]);
+      //       // console.log(
+      //       //   a,
+      //       //   "loop output clicked cell content",
+      //       //   allBoxesContent[winningCombo[i][a] - 1]
+      //       // );
+      //       winner[a] = allBoxesContent[winningCombo[i][a] - 1]; //REVIEW - learn this well
+      //       //TODO - add condition to check for winner maybe build an array that sets a true or false if the content equals X or O
+      //     }
+      //     // console.log("before if:", winner[0]);
+      //     //if (winner[0] === "X" && winner[1] === "X" && winner[2] === "X") {
+      //     // document.getElementById("playerDeclaration").innerHTML =
+      //     //   "A winner has been found";
+      //     console.log("nested loop output: ");
+      //   }
+      //   console.table(winner);
+      //   winner = ["", "", ""];
+      // }
+      // //document.getElementById("div1").textContent != "" || document.getElementById("div2").textContent !="" || document.getElementById("div3").textContent != "" ||
 
-        //ANCHOR - test section subject to change look at 'README' 17
-        if (
-          (document.getElementById("div1").textContent === "X" &&
-            document.getElementById("div2").textContent === "X" &&
-            document.getElementById("div3").textContent === "X") ||
-          (document.getElementById("div1").textContent === "O" &&
-            document.getElementById("div1").textContent === "O" &&
-            document.getElementById("div2").textContent === "O" &&
-            document.getElementById("div3").textContent === "O")
-        ) {
-          // loop method
-          declareWinner();
-        } else {
-          runGame();
-        }
-      }
+      // //ANCHOR - test section subject to change look at 'README' 17
+      // if (
+      //   (document.getElementById("div1").textContent === "X" &&
+      //     document.getElementById("div2").textContent === "X" &&
+      //     document.getElementById("div3").textContent === "X") ||
+      //   (document.getElementById("div1").textContent === "O" &&
+      //     document.getElementById("div1").textContent === "O" &&
+      //     document.getElementById("div2").textContent === "O" &&
+      //     document.getElementById("div3").textContent === "O")
+      // ) {
+      //   // loop method
+      //   declareWinner();
+      // } else {
+      //   runGame();
+      // }
+      //}
       function runGame() {
         counter();
         declarePlayer();
@@ -134,12 +153,12 @@
       }
       function clickHandler() {
         clickId();
-        const clickedElement = event.target;
-        const clickedId = clickedElement.getAttribute("id");
+        // const clickedElement = event.target;
+        // const clickedId = clickedElement.getAttribute("id");
         if (document.getElementById(clickedIdGlobal).textContent === "") {
-          //runGame();
-          addXorO(clickedId);
-          checkForWinner();
+          addXorO(); //removed (clickedId) for now to get code running again
+          runGame();
+          //checkForWinner();
         }
       }
       function declareWinner() {
