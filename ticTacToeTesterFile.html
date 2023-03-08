@@ -98,8 +98,13 @@
         ];
         for (let i = 0; i < winningCombo.length; i++) {
           // console.log(i, " outer loop ", winningCombo[i]);
-          for (let a = 0; a < winningCombo[i].length; a++) {
-            //  console.log(a, " inner loop ", winningCombo[i][a]);
+          // for (let a = 0; a < winningCombo[i].length; a++) {
+          //    console.log(a, " inner loop ", winningCombo[i][a]);
+          //    if(winningCombo[0][a])
+             if(array.includes("X", winningCombo[i][0]) && array.includes("X", winningCombo[i][1]) && array.includes("X", winningCombo[i][2])){
+              console.log("Player: 1 is the Winner!");
+              
+             }
           }
         }
         //document.getElementById("div1").textContent != "" || document.getElementById("div2").textContent !="" || document.getElementById("div3").textContent != "" ||
