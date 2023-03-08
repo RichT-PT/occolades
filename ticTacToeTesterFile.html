@@ -43,7 +43,7 @@
       let count = 0;
       let playerNumber = 1;
       //let playerXorO = "X";
-      let clickedIdGlobal = "";
+      let clickedIdGlobal = null;
       const allBoxesContent = ["", "", "", "", "", "", "", "", ""];
       let XorO = "X";
 
@@ -72,14 +72,13 @@
         clickedIdGlobal = clickedId;
       }
       //NOTE - addXorO
-      function addXorO() {
-        // removed (newClick) for now to get code running again
+      function addXorO(newClick) {
         //REVIEW -
-        //console.log("addXorO function", newClick);
-        //let divIndex = newClick.replace("div", "") - 1; //REVIEW - learn this
-        //console.log(divIndex);
-        //allBoxesContent[divIndex] = XorO; //REVIEW -
-        //console.log(allBoxesContent);
+        console.log("addXorO function", newClick);
+        let divIndex = newClick.replace("div", "") - 1; //REVIEW - learn this
+        console.log(divIndex);
+        allBoxesContent[divIndex] = XorO; //REVIEW -
+        console.log(allBoxesContent);
 
         document.getElementById(clickedIdGlobal).innerHTML = XorO;
         //checkForWinner();
@@ -98,29 +97,35 @@
           [3, 5, 7],
         ];
         for (let i = 0; i < winningCombo.length; i++) {
-          // console.log(i, " outer loop ", winningCombo[i]);
-          for (let a = 0; a < winningCombo[i].length; a++) {
-            //  console.log(a, " inner loop ", winningCombo[i][a]);
+          console.log(i, " outer loop ", winningCombo[i]);
+          for (let a = 0; a < 3; a++) {
+            console.log(a, " inner loop ", winningCombo[i][a]);
+
+            //    if(winningCombo[0][a])
+            //  if(array.includes("O", winningCombo[i][0]) && array.includes("O", winningCombo[i][1]) && array.includes("O", winningCombo[i][2])){
+            //   console.log("Player: 1 is the Winner!");
+
+            //  }
           }
         }
         //document.getElementById("div1").textContent != "" || document.getElementById("div2").textContent !="" || document.getElementById("div3").textContent != "" ||
 
-      // //ANCHOR - test section subject to change look at 'README' 17
-      // if (
-      //   (document.getElementById("div1").textContent === "X" &&
-      //     document.getElementById("div2").textContent === "X" &&
-      //     document.getElementById("div3").textContent === "X") ||
-      //   (document.getElementById("div1").textContent === "O" &&
-      //     document.getElementById("div1").textContent === "O" &&
-      //     document.getElementById("div2").textContent === "O" &&
-      //     document.getElementById("div3").textContent === "O")
-      // ) {
-      //   // loop method
-      //   declareWinner();
-      // } else {
-      //   runGame();
-      // }
-      //}
+        //ANCHOR - test section subject to change look at 'README' 17
+        if (
+          (document.getElementById("div1").textContent === "X" &&
+            document.getElementById("div2").textContent === "X" &&
+            document.getElementById("div3").textContent === "X") ||
+          (document.getElementById("div1").textContent === "O" &&
+            document.getElementById("div1").textContent === "O" &&
+            document.getElementById("div2").textContent === "O" &&
+            document.getElementById("div3").textContent === "O")
+        ) {
+          // loop method
+          declareWinner();
+        } else {
+          runGame();
+        }
+      }
       function runGame() {
         counter();
         declarePlayer();
@@ -135,12 +140,12 @@
       }
       function clickHandler() {
         clickId();
-        // const clickedElement = event.target;
-        // const clickedId = clickedElement.getAttribute("id");
+        const clickedElement = event.target;
+        const clickedId = clickedElement.getAttribute("id");
         if (document.getElementById(clickedIdGlobal).textContent === "") {
-          addXorO(); //removed (clickedId) for now to get code running again
-          runGame();
-          //checkForWinner();
+          //runGame();
+          addXorO(clickedId);
+          checkForWinner();
         }
       }
       function declareWinner() {
