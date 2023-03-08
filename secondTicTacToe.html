@@ -93,19 +93,34 @@
           [1, 5, 9],
           [3, 5, 7],
         ];
+        let divIdarray = ['"div1"', '"div2"', '"div3"', '"div4"', '"div5"', '"div6"', '"div7"', '"div8"', '"div9"'];
+        let divContent = ["", "", "", "", "", "", "", "", ""];
+        //array name[0] = "text to replace";
+        let divId = clickedIdGlobal.replace("div", "") - 1;
         for (let i = 0; i < winningCombo.length; i++) {
           console.log(i, " outer loop ", winningCombo[i]);
           let comboKeeper = [];
           for (let a = 0; a < 3; a++) {
             console.log(a, " inner loop ", winningCombo[i][a]);
             comboKeeper.push(winningCombo[i][a]);
-            if(comboKeeper[0] === comboKeeper[1] && comboKeeper[1] === comboKeeper[2]){
+            //if(document.getElementById())
+            // if(comboKeeper[0] === comboKeeper[1] && comboKeeper[1] === comboKeeper[2]){
               document.getElementById("playerDeclaration").innerHTML = "Player: " + playerNumber + " is the winner!";
             }
-          }console.log('combo keeper', comboKeeper);
+          }
+            console.log('divIdarray ', divIdarray[0]);
+            //REVIEW - loop to add x or o to the div content array for comparison
+            for(let i =0; i , divIdarray.length; i++){
+              divContent[i] = document.getElementById('"div' + [i] + '"')
+              
+            }
+            console.log(divContent[i]);
+            
+          console.log(divContent);
+          //console.log('combo keeper', comboKeeper, "divId",divId, "XorO", XorO);
+          switchPlayer();
         }
-        switchPlayer();
-      }
+      
         // if (
         //   (document.getElementById("div1").textContent === "X" &&
         //     document.getElementById("div2").textContent === "X" &&
