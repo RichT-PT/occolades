@@ -18,7 +18,9 @@
     ◦ A button should be available to clear the grid and restart the game.
     ◦ When a player has won, or the board is full and the game results in a draw, a Bootstrap alert or similar Bootstrap component should appear across the screen announcing the winner. -->
 
-    <h1 id="playerDeclaration">Player: 1 Plays: X</h1>
+    <h1 id="playerDeclaration">Player: 1 Plays: X </h1>
+    <button onclick="restart()">Restart Game</button>
+    
 
     <div id="myDIV">
       <div id="div1"></div>
@@ -44,11 +46,15 @@
       let playerNumber = 1;
       //let playerXorO = "X";
       let clickedIdGlobal = "";
-      const allBoxesContent = ["", "", "", "", "", "", "", "", ""];
+      //const allBoxesDivId = [];
+      //const allBoxesContent = [];
       let XorO = "X";
 
       document.getElementById("myDIV").addEventListener("click", clickHandler);
 
+      function restart(){
+          window.location.reload();//REVIEW - handy handy handy. don't have to clear date to start over
+      }
       function declarePlayer() {
         document.getElementById("playerDeclaration").innerHTML =
           "Player: " + playerNumber + " Plays: " + XorO;
@@ -71,22 +77,12 @@
         const clickedId = clickedElement.getAttribute("id");
         clickedIdGlobal = clickedId;
       }
-      //NOTE - addXorO
       function addXorO() {
-        // removed (newClick) for now to get code running again
-        //REVIEW -
-        //console.log("addXorO function", newClick);
-        //let divIndex = newClick.replace("div", "") - 1; //REVIEW - learn this
-        //console.log(divIndex);
-        //allBoxesContent[divIndex] = XorO; //REVIEW -
-        //console.log(allBoxesContent);
-
         document.getElementById(clickedIdGlobal).innerHTML = XorO;
         //checkForWinner();
       }
-
-      //NOTE -  checkForWinner- nested loop that iterates through div values to compare them
       function checkForWinner() {
+        //document.getElementById("div1").textContent != "" || document.getElementById("div2").textContent !="" || document.getElementById("div3").textContent != "" ||
         var winningCombo = [
           [1, 4, 7],
           [2, 5, 8],
@@ -97,34 +93,52 @@
           [1, 5, 9],
           [3, 5, 7],
         ];
+        let divIdarray = ['"div1"', '"div2"', '"div3"', '"div4"', '"div5"', '"div6"', '"div7"', '"div8"', '"div9"'];
+        let divContent = ["", "", "", "", "", "", "", "", ""];
+        //array name[0] = "text to replace";
+        let divId = clickedIdGlobal.replace("div", "") - 1;
         for (let i = 0; i < winningCombo.length; i++) {
-          // console.log(i, " outer loop ", winningCombo[i]);
-          for (let a = 0; a < winningCombo[i].length; a++) {
-            //  console.log(a, " inner loop ", winningCombo[i][a]);
+          console.log(i, " outer loop ", winningCombo[i]);
+          let comboKeeper = [];
+          for (let a = 0; a < 3; a++) {
+            console.log(a, " inner loop ", winningCombo[i][a]);
+            comboKeeper.push(winningCombo[i][a]);
+            //if(document.getElementById())
+            // if(comboKeeper[0] === comboKeeper[1] && comboKeeper[1] === comboKeeper[2]){
+              document.getElementById("playerDeclaration").innerHTML = "Player: " + playerNumber + " is the winner!";
+            }
           }
+            console.log('divIdarray ', divIdarray[0]);
+            //REVIEW - loop to add x or o to the div content array for comparison
+            for(let i =0; i , divIdarray.length; i++){
+              divContent[i] = document.getElementById('"div' + [i] + '"')
+              
+            }
+            console.log(divContent[i]);
+            
+          console.log(divContent);
+          //console.log('combo keeper', comboKeeper, "divId",divId, "XorO", XorO);
+          switchPlayer();
         }
-        //document.getElementById("div1").textContent != "" || document.getElementById("div2").textContent !="" || document.getElementById("div3").textContent != "" ||
-
-      // //ANCHOR - test section subject to change look at 'README' 17
-      // if (
-      //   (document.getElementById("div1").textContent === "X" &&
-      //     document.getElementById("div2").textContent === "X" &&
-      //     document.getElementById("div3").textContent === "X") ||
-      //   (document.getElementById("div1").textContent === "O" &&
-      //     document.getElementById("div1").textContent === "O" &&
-      //     document.getElementById("div2").textContent === "O" &&
-      //     document.getElementById("div3").textContent === "O")
-      // ) {
-      //   // loop method
-      //   declareWinner();
-      // } else {
-      //   runGame();
-      // }
-      //}
+      
+        // if (
+        //   (document.getElementById("div1").textContent === "X" &&
+        //     document.getElementById("div2").textContent === "X" &&
+        //     document.getElementById("div3").textContent === "X") ||
+        //   (document.getElementById("div1").textContent === "O" &&
+        //     document.getElementById("div1").textContent === "O" &&
+        //     document.getElementById("div2").textContent === "O" &&
+        //     document.getElementById("div3").textContent === "O"))
+        
+         // declareWinner();
+        //} else {
+          //runGame();
+  
       function runGame() {
         counter();
+        addXorO();
         declarePlayer();
-        //addXorO(); //ANCHOR - moved this to create the proper timing
+        checkForWinner();
         switchPlayer();
 
         console.log(
@@ -135,16 +149,16 @@
       }
       function clickHandler() {
         clickId();
-        // const clickedElement = event.target;
-        // const clickedId = clickedElement.getAttribute("id");
         if (document.getElementById(clickedIdGlobal).textContent === "") {
-          addXorO(); //removed (clickedId) for now to get code running again
           runGame();
           //checkForWinner();
+          
         }
       }
       function declareWinner() {
         //want to check if 3 divs have the same letter then use one of the divs to check if it's an X or O
+        document.getElementById("myDIV").removeEventListener("click", clickHandler);
+        
         if (
           document.getElementById("div1").textContent ===
             document.getElementById("div2").textContent &&
