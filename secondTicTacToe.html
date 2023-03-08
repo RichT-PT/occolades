@@ -18,7 +18,9 @@
     ◦ A button should be available to clear the grid and restart the game.
     ◦ When a player has won, or the board is full and the game results in a draw, a Bootstrap alert or similar Bootstrap component should appear across the screen announcing the winner. -->
 
-    <h1 id="playerDeclaration">Player: 1 Plays: X</h1>
+    <h1 id="playerDeclaration">Player: 1 Plays: X </h1>
+    <button onclick="restart()">Restart Game</button>
+    
 
     <div id="myDIV">
       <div id="div1"></div>
@@ -43,13 +45,23 @@
       let count = 0;
       let playerNumber = 1;
       //let playerXorO = "X";
-      let clickedIdGlobal = null;
+      let clickedIdGlobal = "";
       //const allBoxesDivId = [];
       //const allBoxesContent = [];
       let XorO = "X";
 
       document.getElementById("myDIV").addEventListener("click", clickHandler);
 
+      function restart(){
+        const restartGame = document.querySelectorAll("div");
+	for (var i = 1; i < 10; i++) {
+    let id = "div" + i;
+    //console.log('restart', id);
+    document.getElementById(id).innerHTML = "";
+	}
+
+  window.location.reload();//REVIEW - handy handy handy. don't have to clear date to start over
+      }
       function declarePlayer() {
         document.getElementById("playerDeclaration").innerHTML =
           "Player: " + playerNumber + " Plays: " + XorO;
@@ -89,13 +101,14 @@
         ) {
           declareWinner();
         } else {
-          runGame();
+          //runGame();
         }
       }
       function runGame() {
         counter();
         addXorO();
         declarePlayer();
+        checkForWinner();
         switchPlayer();
 
         console.log(
@@ -107,13 +120,15 @@
       function clickHandler() {
         clickId();
         if (document.getElementById(clickedIdGlobal).textContent === "") {
-          //runGame();
-          checkForWinner();
+          runGame();
+          //checkForWinner();
           
         }
       }
       function declareWinner() {
         //want to check if 3 divs have the same letter then use one of the divs to check if it's an X or O
+        document.getElementById("myDIV").removeEventListener("click", clickHandler);
+        
         if (
           document.getElementById("div1").textContent ===
             document.getElementById("div2").textContent &&
