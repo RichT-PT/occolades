@@ -83,20 +83,42 @@
       }
       function checkForWinner() {
         //document.getElementById("div1").textContent != "" || document.getElementById("div2").textContent !="" || document.getElementById("div3").textContent != "" ||
-        if (
-          (document.getElementById("div1").textContent === "X" &&
-            document.getElementById("div2").textContent === "X" &&
-            document.getElementById("div3").textContent === "X") ||
-          (document.getElementById("div1").textContent === "O" &&
-            document.getElementById("div1").textContent === "O" &&
-            document.getElementById("div2").textContent === "O" &&
-            document.getElementById("div3").textContent === "O")
-        ) {
-          declareWinner();
-        } else {
-          //runGame();
+        var winningCombo = [
+          [1, 4, 7],
+          [2, 5, 8],
+          [3, 6, 9],
+          [1, 2, 3],
+          [4, 5, 6],
+          [7, 8, 9],
+          [1, 5, 9],
+          [3, 5, 7],
+        ];
+        for (let i = 0; i < winningCombo.length; i++) {
+          console.log(i, " outer loop ", winningCombo[i]);
+          let comboKeeper = [];
+          for (let a = 0; a < 3; a++) {
+            console.log(a, " inner loop ", winningCombo[i][a]);
+            comboKeeper.push(winningCombo[i][a]);
+            if(comboKeeper[0] === comboKeeper[1] && comboKeeper[1] === comboKeeper[2]){
+              document.getElementById("playerDeclaration").innerHTML = "Player: " + playerNumber + " is the winner!";
+            }
+          }console.log('combo keeper', comboKeeper);
         }
+        switchPlayer();
       }
+        // if (
+        //   (document.getElementById("div1").textContent === "X" &&
+        //     document.getElementById("div2").textContent === "X" &&
+        //     document.getElementById("div3").textContent === "X") ||
+        //   (document.getElementById("div1").textContent === "O" &&
+        //     document.getElementById("div1").textContent === "O" &&
+        //     document.getElementById("div2").textContent === "O" &&
+        //     document.getElementById("div3").textContent === "O"))
+        
+         // declareWinner();
+        //} else {
+          //runGame();
+  
       function runGame() {
         counter();
         addXorO();
