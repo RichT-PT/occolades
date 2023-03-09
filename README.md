@@ -106,3 +106,134 @@ var winningCombo = [
 [1, 5, 9],
 [3, 5, 7],
 ];
+//let fakeId = "";
+// for (let i = 1; i < winningCombo.length; i++) {
+// // console.log(i, " outer loop ", winningCombo[i]);
+// // let comboKeeper = [];
+// for (let a = 0; a < 3; a++) {
+// let id2 = winningCombo[i][a];
+// let div = "div";
+// let id = `div${id2}`;
+
+        //     winningDivCombo.push(id);
+        //     console.log(id);
+        //     console.log(
+        //       "getElementById with variable",
+        //       document.getElementById(id)
+        //     );
+        //   }
+        //   switchPlayer();
+        // }
+        // console.log("outside of loop array", winningDivCombo);
+
+        //     let divId = clickedIdGlobal.replace("div", "") - 1;
+        //     if(the text content of the div + )
+
+        //     console.log(a, " inner loop ", winningCombo[i][a]);
+        //     comboKeeper.push(winningCombo[i][a]);
+        //     //if(document.getElementById())
+        //     // if(comboKeeper[0] === comboKeeper[1] && comboKeeper[1] === comboKeeper[2]){
+        //     document.getElementById("announcement").innerHTML =
+        //       "Player: " + playerNumber + " is the winner!";
+        //   }
+        // }
+        // console.log("divIdarray ", divIdarray[0]);
+        // //REVIEW - loop to add x or o to the div content array for comparison
+        // for (let i = 0; i, divIdarray.length; i++) {
+        //   divContent[i] = document.getElementById('"div' + [i] + '"');
+        // }
+        // console.log(divContent[i]);
+
+        // console.log(divContent);
+        // //console.log('combo keeper', comboKeeper, "divId",divId, "XorO", XorO);
+        //console.log(winningDivCombo[1]);
+        //let fakeId = winningDivCombo[1];
+        //console.log(document.getElementById(fakeId).textContent);
+      }
+
+      // if (
+      //   (document.getElementById("div1").textContent === "X" &&
+      //     document.getElementById("div2").textContent === "X" &&
+      //     document.getElementById("div3").textContent === "X") ||
+      //   (document.getElementById("div1").textContent === "O" &&
+      //     document.getElementById("div1").textContent === "O" &&
+      //     document.getElementById("div2").textContent === "O" &&
+      //     document.getElementById("div3").textContent === "O"))
+
+      // declareWinner();
+      //} else {
+      //runGame();
+
+function declareWinner() {
+//want to check if 3 divs have the same letter then use one of the divs to check if it's an X or O
+document
+.getElementById("myDIV")
+.removeEventListener("click", clickHandler);
+
+        if (
+          document.getElementById("div1").textContent ===
+            document.getElementById("div2").textContent &&
+          document.getElementById("div1").textContent ===
+            document.getElementById("div3").textContent
+        ) {
+          if (document.getElementById("div1").textContent === "X") {
+            document.getElementById("announcement").innerHTML =
+              "Player 1-X Wins";
+          } else {
+            document.getElementById("announcement").innerHTML =
+              "Player 2-O Wins";
+          }
+        } else if (
+          document.getElementById("div4").textContent ===
+            document.getElementById("div5").textContent &&
+          document.getElementById("div6").textContent ===
+            document.getElementById("div4").textContent
+        ) {
+          if (document.getElementById("div4").textContent === "X") {
+            document.getElementById("announcement").innerHTML =
+              "Player 1-X Wins";
+          } else {
+            document.getElementById("announcement").innerHTML =
+              "Player 2-O Wins";
+          }
+        } else if (
+          document.getElementById("div7").textContent ===
+            document.getElementById("div8").textContent &&
+          document.getElementById("div9").textContent ===
+            document.getElementById("div7").textContent
+        ) {
+          if (document.getElementById("div7").textContent === "X") {
+            document.getElementById("announcement").innerHTML =
+              "Player 1-X Wins";
+          } else {
+            document.getElementById("announcement").innerHTML =
+              "Player 2-O Wins";
+          }
+        } else if (
+          document.getElementById("div1").textContent ===
+            document.getElementById("div5").textContent &&
+          document.getElementById("div9").textContent ===
+            document.getElementById("div1").textContent
+        ) {
+          if (document.getElementById("div1").textContent === "X") {
+            document.getElementById("announcement").innerHTML =
+              "Player 1-X Wins";
+          } else {
+            document.getElementById("announcement").innerHTML =
+              "Player 2-O Wins";
+          }
+        } else if (
+          document.getElementById("div3").textContent ===
+            document.getElementById("div5").textContent &&
+          document.getElementById("div7").textContent ===
+            document.getElementById("div3").textContent
+        ) {
+          if (document.getElementById("div3").textContent === "X") {
+            document.getElementById("announcement").innerHTML =
+              "Player 1-X Wins";
+          } else {
+            document.getElementById("announcement").innerHTML =
+              "Player 2-O Wins";
+          }
+        }
+      }

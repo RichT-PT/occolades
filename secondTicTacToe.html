@@ -9,6 +9,22 @@
   </head>
   <body>
     <script src="node_modules/jquery/dist/jquery.js"></script>
+    <script src="node_modules/bootstrap/dist/js/bootstrap.bundle.js"></script>
+    <script
+      src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+      integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://cdn.jsdelivr.net/npm/popper.js@1.14.7/dist/umd/popper.min.js"
+      integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/js/bootstrap.min.js"
+      integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+      crossorigin="anonymous"
+    ></script>
     <!-- <script src="ticTacToe.js"></script> -->
 
     <!-- • Using any of the tools you’ve worked with so far, create a game of Tic-Tac-Toe.
@@ -18,9 +34,10 @@
     ◦ A button should be available to clear the grid and restart the game.
     ◦ When a player has won, or the board is full and the game results in a draw, a Bootstrap alert or similar Bootstrap component should appear across the screen announcing the winner. -->
 
-    <h1 id="playerDeclaration">Player: 1 Plays: X </h1>
-    <button onclick="restart()">Restart Game</button>
-    
+    <h1 id="announcement">Player: 1 Plays: X</h1>
+    <button id="reset" class="btn btn-warning" onclick="restart()">
+      Restart Game
+    </button>
 
     <div id="myDIV">
       <div id="div1"></div>
@@ -35,41 +52,27 @@
     </div>
 
     <script>
-      // 1. add an eventlistener
-      // make a click counter to record the number of clicks use even and odd to determine player
-      // 2. id the div that is clicked use the id to determine where to place X or O and to compare boxes for win
-      // 3. create a method that compares the value in the rows in winning combos (123, 456, 789, 159, 257) and out put the winner when the 3 values are the same if(getElementbyId(div1).value == getElementById(div2).value && ......
-      // 3. or make a variable = to each div and compare with less typing. or use jquery
-      // 3. could make a loop that iterates through all the divs and compares[0], [1], [2]; [3], [4], [5]; [6], [7], [8]; [0], [4], [8]; [2], [3], [6];
-      // document.addEventListener("click", counter);
       let count = 0;
       let playerNumber = 1;
-      //let playerXorO = "X";
       let clickedIdGlobal = "";
-      //const allBoxesDivId = [];
-      //const allBoxesContent = [];
       let XorO = "X";
 
       document.getElementById("myDIV").addEventListener("click", clickHandler);
 
-      function restart(){
-          window.location.reload();//REVIEW - handy handy handy. don't have to clear date to start over
+      function restart() {
+        window.location.reload(); //REVIEW - handy handy handy. don't have to clear date to start over
       }
       function declarePlayer() {
-        document.getElementById("playerDeclaration").innerHTML =
+        document.getElementById("announcement").innerHTML =
           "Player: " + playerNumber + " Plays: " + XorO;
       }
 
-      function counter() {
-        count++;
-      }
-      function switchPlayer() {
-        if (count % 2 === 0) {
-          playerNumber = 1;
-          XorO = "X";
-        } else {
-          playerNumber = 2;
-          XorO = "O";
+      function clickHandler() {
+        clickId(); //!SECTION1 starts game by populating the 'clickedIdGlobal' variable
+        // the Id of the div that was clicked
+        if (document.getElementById(clickedIdGlobal).textContent === "") {
+          runGame(); //!SECTION2 the div is empty, the run game function is called and
+          // game continues
         }
       }
       function clickId() {
@@ -77,13 +80,22 @@
         const clickedId = clickedElement.getAttribute("id");
         clickedIdGlobal = clickedId;
       }
+      function runGame() {
+        counter(); //!SECTION3 counts the clicks and populates the count variable with number
+        addXorO(); //!SECTION4 adds an X or O to the div depending on the player on deck
+        checkForWinner(); //!SECTION5 checks for 3 in a row after a player adds entry
+        switchPlayer(); //if no winner is found, game switches players and proceeds
+      }
+      function counter() {
+        count++;
+      }
       function addXorO() {
         document.getElementById(clickedIdGlobal).innerHTML = XorO;
         //checkForWinner();
       }
       function checkForWinner() {
-        //document.getElementById("div1").textContent != "" || document.getElementById("div2").textContent !="" || document.getElementById("div3").textContent != "" ||
         var winningCombo = [
+          //NOTE - winningCombo[0][0] is 1 winningCombo[1][0] is 2 winningCombo[5][0] is 7
           [1, 4, 7],
           [2, 5, 8],
           [3, 6, 9],
@@ -92,138 +104,48 @@
           [7, 8, 9],
           [1, 5, 9],
           [3, 5, 7],
-        ];
-        let divIdarray = ['"div1"', '"div2"', '"div3"', '"div4"', '"div5"', '"div6"', '"div7"', '"div8"', '"div9"'];
-        let divContent = ["", "", "", "", "", "", "", "", ""];
-        //array name[0] = "text to replace";
-        let divId = clickedIdGlobal.replace("div", "") - 1;
+        ]; //ANCHOR - if the text content at the  div id in the above combo is equal to each other there is a winner
+        let winningDivCombo = [];
         for (let i = 0; i < winningCombo.length; i++) {
-          console.log(i, " outer loop ", winningCombo[i]);
-          let comboKeeper = [];
-          for (let a = 0; a < 3; a++) {
-            console.log(a, " inner loop ", winningCombo[i][a]);
-            comboKeeper.push(winningCombo[i][a]);
-            //if(document.getElementById())
-            // if(comboKeeper[0] === comboKeeper[1] && comboKeeper[1] === comboKeeper[2]){
-              document.getElementById("playerDeclaration").innerHTML = "Player: " + playerNumber + " is the winner!";
-            }
+          for (let j = 0; j < 3; j++) {
+            let getId = document.getElementById;
+            let divId = `div${winningCombo[i][j]}`;
+            //console.log(divId);
+            winningDivCombo.push(document.getElementById(divId).textContent);
           }
-            console.log('divIdarray ', divIdarray[0]);
-            //REVIEW - loop to add x or o to the div content array for comparison
-            for(let i =0; i , divIdarray.length; i++){
-              divContent[i] = document.getElementById('"div' + [i] + '"')
-              
-            }
-            console.log(divContent[i]);
-            
-          console.log(divContent);
-          //console.log('combo keeper', comboKeeper, "divId",divId, "XorO", XorO);
-          switchPlayer();
-        }
-      
-        // if (
-        //   (document.getElementById("div1").textContent === "X" &&
-        //     document.getElementById("div2").textContent === "X" &&
-        //     document.getElementById("div3").textContent === "X") ||
-        //   (document.getElementById("div1").textContent === "O" &&
-        //     document.getElementById("div1").textContent === "O" &&
-        //     document.getElementById("div2").textContent === "O" &&
-        //     document.getElementById("div3").textContent === "O"))
-        
-         // declareWinner();
-        //} else {
-          //runGame();
-  
-      function runGame() {
-        counter();
-        addXorO();
-        declarePlayer();
-        checkForWinner();
-        switchPlayer();
-
-        console.log(
-          count,
-          clickedIdGlobal,
-          document.getElementById(clickedIdGlobal).textContent
-        );
-      }
-      function clickHandler() {
-        clickId();
-        if (document.getElementById(clickedIdGlobal).textContent === "") {
-          runGame();
-          //checkForWinner();
-          
+          if (
+            (winningDivCombo[0] === "X" &&
+              winningDivCombo[1] === "X" &&
+              winningDivCombo[2] === "X" &&
+              winningDivCombo[0] === "X") ||
+            (winningDivCombo[0] === "O" &&
+              winningDivCombo[1] === "O" &&
+              winningDivCombo[2] === "O" &&
+              winningDivCombo[0] === "O")
+          ) {
+            document.getElementById("announcement").style.backgroundColor =
+              "#ec385c";
+            document.getElementById("announcement").innerHTML =
+              "Player: " + playerNumber + "Wins! Playing an: " + XorO;
+            document
+              .getElementById("myDIV")
+              .removeEventListener("click", clickHandler);
+          } else {
+            winningDivCombo = [];
+            //switchPlayer();
+            //runGame();
+            // clickHandler();
+          }
+          console.log(winningDivCombo);
         }
       }
-      function declareWinner() {
-        //want to check if 3 divs have the same letter then use one of the divs to check if it's an X or O
-        document.getElementById("myDIV").removeEventListener("click", clickHandler);
-        
-        if (
-          document.getElementById("div1").textContent ===
-            document.getElementById("div2").textContent &&
-          document.getElementById("div1").textContent ===
-            document.getElementById("div3").textContent
-        ) {
-          if (document.getElementById("div1").textContent === "X") {
-            document.getElementById("playerDeclaration").innerHTML =
-              "Player 1-X Wins";
-          } else {
-            document.getElementById("playerDeclaration").innerHTML =
-              "Player 2-O Wins";
-          }
-        } else if (
-          document.getElementById("div4").textContent ===
-            document.getElementById("div5").textContent &&
-          document.getElementById("div6").textContent ===
-            document.getElementById("div4").textContent
-        ) {
-          if (document.getElementById("div4").textContent === "X") {
-            document.getElementById("playerDeclaration").innerHTML =
-              "Player 1-X Wins";
-          } else {
-            document.getElementById("playerDeclaration").innerHTML =
-              "Player 2-O Wins";
-          }
-        } else if (
-          document.getElementById("div7").textContent ===
-            document.getElementById("div8").textContent &&
-          document.getElementById("div9").textContent ===
-            document.getElementById("div7").textContent
-        ) {
-          if (document.getElementById("div7").textContent === "X") {
-            document.getElementById("playerDeclaration").innerHTML =
-              "Player 1-X Wins";
-          } else {
-            document.getElementById("playerDeclaration").innerHTML =
-              "Player 2-O Wins";
-          }
-        } else if (
-          document.getElementById("div1").textContent ===
-            document.getElementById("div5").textContent &&
-          document.getElementById("div9").textContent ===
-            document.getElementById("div1").textContent
-        ) {
-          if (document.getElementById("div1").textContent === "X") {
-            document.getElementById("playerDeclaration").innerHTML =
-              "Player 1-X Wins";
-          } else {
-            document.getElementById("playerDeclaration").innerHTML =
-              "Player 2-O Wins";
-          }
-        } else if (
-          document.getElementById("div3").textContent ===
-            document.getElementById("div5").textContent &&
-          document.getElementById("div7").textContent ===
-            document.getElementById("div3").textContent
-        ) {
-          if (document.getElementById("div3").textContent === "X") {
-            document.getElementById("playerDeclaration").innerHTML =
-              "Player 1-X Wins";
-          } else {
-            document.getElementById("playerDeclaration").innerHTML =
-              "Player 2-O Wins";
-          }
+      function switchPlayer() {
+        if (count % 2 === 0) {
+          playerNumber = 1;
+          XorO = "X";
+        } else {
+          playerNumber = 2;
+          XorO = "O";
         }
       }
     </script>
