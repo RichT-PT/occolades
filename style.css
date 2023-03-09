@@ -5,6 +5,10 @@
   h1{
     background-color: aquamarine;
   }
+  #winner{
+    background-color: #ec385c;
+    float: center;
+  }
   #myDIV {
     height:620px;
     width: 620px;
@@ -24,8 +28,8 @@
     border: 0px;
   }
   #reset{
-    padding: 10px;
-    margin: 0 0 25px 0;
+    padding: 10px ;
+    margin: 10px 10px 20px 10px;
     border-radius: 10px;
     background-color: rgb(165, 208, 35);
   }

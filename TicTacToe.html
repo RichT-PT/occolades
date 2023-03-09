@@ -35,9 +35,9 @@
     ◦ When a player has won, or the board is full and the game results in a draw, a Bootstrap alert or similar Bootstrap component should appear across the screen announcing the winner. -->
 
     <h1 id="announcement">Player1 UP</h1>
-    <button id="reset" class="btn btn-warning" onclick="restart()">
+    <h1 id="winner"></h1><button id="reset" class="btn btn-warning" onclick="restart()">
       Restart Game
-    </button>
+    </button></h1>
 
     <div id="myDIV">
       <div id="div1"></div>
@@ -113,6 +113,7 @@
             //console.log(divId);
             winningDivCombo.push(document.getElementById(divId).textContent);
           }
+
           if (
             (winningDivCombo[0] === "X" &&
               winningDivCombo[1] === "X" &&
@@ -123,12 +124,9 @@
               winningDivCombo[2] === "O" &&
               winningDivCombo[0] === "O")
           ) {
+            declareWinner();
             document.getElementById("announcement").style.backgroundColor =
               "#ec385c";
-
-            document.getElementById(
-              "announcement"
-            ).innerHTML = `Player: ${playerNumber} wins! Playing an ${XorO}`;
 
             document
               .getElementById("myDIV")
@@ -137,6 +135,7 @@
             winningDivCombo = [];
           }
         }
+
         console.log(document.getElementById("announcement"));
       }
       function switchPlayer() {
@@ -148,6 +147,14 @@
           playerNumber = 2;
           XorO = "O";
         }
+      }
+      function declareWinner() {
+        const div = document.getElementById('announcement');
+        div.remove();
+        document.getElementById(
+          "winner"
+        ).innerHTML = `Player: ${playerNumber} wins! Playing an ${XorO}`;
+        console.log(document.getElementById("announcement").textContent);
       }
     </script>
   </body>
