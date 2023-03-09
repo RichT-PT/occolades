@@ -3,7 +3,7 @@
     grid-template-rows: 100px 300px;
   }
   h1{
-    background-color: aquamarine;
+    background-color: #54cfb0;
   }
   #winner{
     background-color: #ec385c;
@@ -19,7 +19,7 @@
     padding: 10px;
     grid: 200px 200px 200px / 200px 200px 200px;
   }
-#myDIV div {
+  #myDIV div {
     
     margin:0;
     background-color: rgb(49, 143, 44);

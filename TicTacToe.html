@@ -143,17 +143,24 @@
         if (count % 2 === 0) {
           playerNumber = 1;
           XorO = "X";
+          document.getElementById("announcement").style.backgroundColor =
+              "#3847ce";
         } else {
           playerNumber = 2;
           XorO = "O";
+          document.getElementById("announcement").style.backgroundColor = "#cfc854"
         }
       }
       function declareWinner() {
         const div = document.getElementById('announcement');
-        div.remove();
+        div.remove();//NOTE - code would not rewrite header to display winner announcement. 
+                     //so I built a new header and erased the original one when there is a winner
         document.getElementById(
           "winner"
         ).innerHTML = `Player: ${playerNumber} wins! Playing an ${XorO}`;
+        document
+              .getElementById("myDIV")
+              .removeEventListener("click", clickHandler);
         console.log(document.getElementById("announcement").textContent);
       }
     </script>
