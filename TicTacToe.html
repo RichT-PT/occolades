@@ -38,6 +38,7 @@
     <h1 id="winner"></h1><button id="reset" class="btn btn-warning" onclick="restart()">
       Restart Game
     </button></h1>
+    <h1 id="tie"></h1>
 
     <div id="myDIV">
       <div id="div1"></div>
@@ -68,13 +69,18 @@
       }
 
       function clickHandler() {
+        console.log(count);
+        
         clickId(); //!SECTION1 starts game by populating the 'clickedIdGlobal' variable
         // the Id of the div that was clicked
         if (document.getElementById(clickedIdGlobal).textContent === "") {
           runGame(); //!SECTION2 the div is empty, the run game function is called and
           // game continues
         }
+        
+        
       }
+      
       function clickId() {
         const clickedElement = event.target;
         const clickedId = clickedElement.getAttribute("id");
@@ -85,6 +91,7 @@
         addXorO(); //!SECTION4 adds an X or O to the div depending on the player on deck
         checkForWinner(); //!SECTION5 checks for 3 in a row after a player adds entry
         switchPlayer(); //if no winner is found, game switches players and proceeds
+        
       }
       function counter() {
         count++;
@@ -92,8 +99,10 @@
       function addXorO() {
         document.getElementById(clickedIdGlobal).innerHTML = XorO;
         //checkForWinner();
+        
       }
       function checkForWinner() {
+        
         var winningCombo = [
           //NOTE - winningCombo[0][0] is 1 winningCombo[1][0] is 2 winningCombo[5][0] is 7
           [1, 4, 7],
@@ -125,14 +134,21 @@
               winningDivCombo[0] === "O")
           ) {
             declareWinner();
-            document.getElementById("announcement").style.backgroundColor =
+            document.getElementById("winner").style.backgroundColor =
               "#ec385c";
 
-            document
-              .getElementById("myDIV")
-              .removeEventListener("click", clickHandler);
+            // document
+            //   .getElementById("myDIV")
+            //   .removeEventListener("click", clickHandler);
           } else {
             winningDivCombo = [];
+            if(count === 9){
+          document.getElementById('tie').innerHTML = "We Have A Tie!!"
+        
+        //console.log(document.getElementById('announcement').textContent);
+        const div = document.getElementById('announcement');
+        div.remove();
+            }
           }
         }
 
@@ -161,7 +177,7 @@
         document
               .getElementById("myDIV")
               .removeEventListener("click", clickHandler);
-        console.log(document.getElementById("announcement").textContent);
+        console.log(document.getElementById("winner").textContent);
       }
     </script>
   </body>
